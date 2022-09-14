@@ -17,6 +17,12 @@ import { OrderService } from './order.service';
 export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 
+  /**
+   * @description 주문 내역 리스트 조회 (주문 상태, 기간 별 조회 가능)
+   * @param payState
+   * @param term
+   * @returns json Array
+   */
   @ApiParam({
     name: 'payState',
     required: false,
@@ -54,6 +60,11 @@ export class OrderController {
     return await this.orderService.find(payState, term);
   }
 
+  /**
+   * @description 주문자명으로 주문 조회
+   * @param name
+   * @returns json Array
+   */
   @ApiParam({
     name: 'name',
     description: '검색 할 주문자명',
@@ -65,6 +76,12 @@ export class OrderController {
     return await this.orderService.findByName(name);
   }
 
+  /**
+   * @description 해당 주문 배송 상태 변경
+   * @param id
+   * @param delivery_state
+   * @returns
+   */
   @ApiBody({
     type: updateDState,
     required: true,
