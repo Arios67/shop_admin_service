@@ -3,14 +3,14 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 export class Contry {
   @PrimaryGeneratedColumn()
-  id: number;
+  contry_id: number;
 
   @Column()
-  name: string;
+  contry_name: string;
 
   @Column()
-  code: string;
+  contry_code: string;
 
   @Column()
-  dcode: string;
+  contry_dcode: string;
 }
