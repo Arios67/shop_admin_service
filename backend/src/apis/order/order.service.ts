@@ -14,28 +14,29 @@ export class OrderService {
     private datasouce: DataSource,
   ) {}
 
-  async find(payState: PAY_STATUS_ENUM, term) {
+  async find(payState: String, term) {
     if (payState) {
       return await this.datasouce
         .createQueryBuilder(Order, 'order')
+        .leftJoinAndSelect('order.user', 'user')
         .where('order.pay_state =:pS', { pS: payState })
         .andWhere({ createAt: MoreThan(term[0]) })
         .andWhere({ createAt: LessThan(term[1]) })
         .getMany();
     }
-
     return await this.datasouce
       .createQueryBuilder(Order, 'order')
+      .leftJoinAndSelect('order.user', 'user')
       .where({ createAt: MoreThan(term[0]) })
       .andWhere({ createAt: LessThan(term[1]) })
       .getMany();
   }
 
-  async findById(userId: string) {
+  async findByName(name: string) {
     const qb = this.datasouce.createQueryBuilder(Order, 'order');
     return await qb
       .leftJoinAndSelect('order.user', 'user')
-      .where('user.id =:id', { id: userId })
+      .where('user.username =:name', { name: name })
       .getMany();
   }
 

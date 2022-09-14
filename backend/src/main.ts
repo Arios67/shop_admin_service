@@ -24,8 +24,8 @@ async function bootstrap() {
     SwaggerModule.createDocument(
       app,
       new DocumentBuilder()
-        .setTitle('NestJS Typeorm Template Swagger')
-        .setDescription('Writed by Ksanbal')
+        .setTitle('shop_admin service')
+        .setDescription('api-docs')
         .setVersion('1.0')
         .build(),
     ),
