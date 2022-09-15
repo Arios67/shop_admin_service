@@ -1,9 +1,9 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, Unique } from 'typeorm';
 
 @Entity()
 export class Contry {
   @PrimaryGeneratedColumn()
-  contry_id: number;
+  id: number;
 
   @Column()
   contry_name: string;

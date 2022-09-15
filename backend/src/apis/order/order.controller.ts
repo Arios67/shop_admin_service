@@ -6,8 +6,16 @@ import {
   Put,
   Query,
   ParseArrayPipe,
+  Post,
 } from '@nestjs/common';
-import { ApiBody, ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBody,
+  ApiOperation,
+  ApiParam,
+  ApiQuery,
+  ApiTags,
+} from '@nestjs/swagger';
+import { CreateOrderInput } from './dtos/createOrder.input';
 import { updateDState } from './dtos/update.dto';
 import { PAY_STATUS_ENUM } from './entities/payState.enum';
 import { OrderService } from './order.service';
@@ -91,5 +99,14 @@ export class OrderController {
   async updateDState(@Param('id') id: string, @Body() input: updateDState) {
     console.log(input);
     return await this.orderService.updateDState(id, input.delivery_state);
+  }
+
+  @ApiOperation({
+    summary: '주문 생성',
+    description: '! price는 달러 단위 입력',
+  })
+  @Post()
+  async create(@Body() input: CreateOrderInput) {
+    return await this.orderService.create(input);
   }
 }

@@ -8,14 +8,13 @@ import {
 } from 'typeorm';
 import { DELIVERY_STATUS_ENUM } from './deliveryState.enum';
 import { PAY_STATUS_ENUM } from './payState.enum';
-import { ApiProperty } from '@nestjs/swagger';
 
 @Entity()
 export class Order {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ default: PAY_STATUS_ENUM.결제완료 })
   pay_state: PAY_STATUS_ENUM;
 
   @Column()
