@@ -1,5 +1,11 @@
 import { User } from '../../user/entities/user.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+} from 'typeorm';
 import { DELIVERY_STATUS_ENUM } from './deliveryState.enum';
 import { PAY_STATUS_ENUM } from './payState.enum';
 
@@ -8,7 +14,7 @@ export class Order {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ default: PAY_STATUS_ENUM.결제완료 })
   pay_state: PAY_STATUS_ENUM;
 
   @Column()
@@ -28,6 +34,9 @@ export class Order {
 
   @Column({ default: DELIVERY_STATUS_ENUM.배송_대기 })
   delivery_state: DELIVERY_STATUS_ENUM;
+
+  @CreateDateColumn()
+  createAt: Date;
 
   @ManyToOne(() => User, { eager: true })
   user: User;

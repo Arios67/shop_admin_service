@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, Unique } from 'typeorm';
 
 @Entity()
 export class Contry {
@@ -6,11 +6,11 @@ export class Contry {
   id: number;
 
   @Column()
-  name: string;
+  contry_name: string;
 
   @Column()
-  code: string;
+  contry_code: string;
 
   @Column()
-  dcode: string;
+  contry_dcode: string;
 }

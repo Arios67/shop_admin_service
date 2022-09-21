@@ -13,6 +13,9 @@ export class Coupon {
   @Column()
   type: COUPON_TYPE_ENUM;
 
-  @ManyToOne(() => Order, { eager: true })
+  @Column({ nullable: true })
+  off_amount: number;
+
+  @ManyToOne(() => Order, { nullable: true, eager: true })
   order: Order;
 }

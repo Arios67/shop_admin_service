@@ -9,7 +9,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   // HttpException Filter
-  app.useGlobalFilters(new HttpExceptionFilter());
+  // app.useGlobalFilters(new HttpExceptionFilter());
 
   // Response Interceptor
   app.useGlobalInterceptors(new ResponseInterceptor());
@@ -24,8 +24,8 @@ async function bootstrap() {
     SwaggerModule.createDocument(
       app,
       new DocumentBuilder()
-        .setTitle('NestJS Typeorm Template Swagger')
-        .setDescription('Writed by Ksanbal')
+        .setTitle('shop_admin service')
+        .setDescription('api-docs')
         .setVersion('1.0')
         .build(),
     ),
